@@ -1,8 +1,21 @@
 pipeline:
+
   build-phar:
     image: patrickjahns/box
     commands:
       - box compile --config box.json
+    when:
+      event: !tag
+
+  build-signed-phar:
+    image: patrickjahns/box
+    secrets: [signing_key]
+    commands:
+      - mkdir .keys
+      - echo $${SIGNING_KEY} > ./keys/phar-private.pem
+      - box compile --config box.json.dist
+    when:
+      event: tag
 
   verify-build:
     image: patrickjahns/box
@@ -14,3 +27,6 @@ pipeline:
     commands:
       - cd build
       - ./cliph.phar hello
+
+
+

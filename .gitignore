@@ -1,3 +1,4 @@
 /vendor
 box.phar
 /build
+.keys
