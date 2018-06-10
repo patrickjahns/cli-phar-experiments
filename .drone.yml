@@ -28,5 +28,13 @@ pipeline:
       - cd build
       - ./cliph.phar hello
 
+  github_release:
+    image: plugins/github-release
+    secrets: [ github_token ]
+    files: build/*
+    checksum: sha256
+    when:
+      event: tag
+
 
 
