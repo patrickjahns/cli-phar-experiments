@@ -1,4 +1,8 @@
 pipeline:
+  composer:
+    image: composer
+    commands:
+      - composer install
 
   build-phar:
     image: patrickjahns/box
