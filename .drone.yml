@@ -5,7 +5,7 @@ pipeline:
     commands:
       - box compile --config box.json
     when:
-      event: !tag
+      event: [push, pull_request]
 
   build-signed-phar:
     image: patrickjahns/box
