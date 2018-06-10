@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Cliph\Command\HelloWorldCommand;
+
+$app = new Application('Cliph', '0.0.1');
+$app->add(new HelloWorldCommand());
+$app->run();
