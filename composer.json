@@ -1,0 +1,26 @@
+{
+  "name": "consolidation/cli-phar-experiments",
+  "description": "Experiments for creating a symfony cli application to be packaged as phar",
+  "license": "GPLv3",
+  "authors": [
+    {
+      "name": "Patrick Jahns",
+      "email": "github@patrickjahns.de"
+    }
+  ],
+  "autoload":{
+    "psr-4":{
+      "Cliph\\":"src"
+    }
+  },
+  "require": {
+    "php": ">=7.1",
+    "symfony/console": "^3.4"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "7.1"
+    }
+  }
+}
