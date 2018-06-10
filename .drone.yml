@@ -1,18 +1,22 @@
 pipeline:
+  composer:
+    image: composer
+    commands:
+      - composer install
 
   build-phar:
     image: patrickjahns/box
     commands:
       - box compile --config box.json
     when:
-      event: !tag
+      event: [push, pull_request]
 
   build-signed-phar:
     image: patrickjahns/box
     secrets: [signing_key]
     commands:
       - mkdir .keys
-      - echo $${SIGNING_KEY} > ./keys/phar-private.pem
+      - echo "$${SIGNING_KEY}" > .keys/phar-private.pem
       - box compile --config box.json.dist
     when:
       event: tag
@@ -27,6 +31,14 @@ pipeline:
     commands:
       - cd build
       - ./cliph.phar hello
+
+  github_release:
+    image: plugins/github-release
+    secrets: [ github_token ]
+    files: build/*
+    checksum: sha256
+    when:
+      event: tag
 
 
 
