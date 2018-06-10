@@ -1,0 +1,16 @@
+pipeline:
+  build-phar:
+    image: patrickjahns/box
+    commands:
+      - box compile --config box.json
+
+  verify-build:
+    image: patrickjahns/box
+    commands:
+      - box verify ./build/cliph.phar
+
+  acceptance-test:
+    image: php:7.1-cli-alpine
+    commands:
+      - cd build
+      - ./cliph.phar hello
