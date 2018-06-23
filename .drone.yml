@@ -1,18 +1,22 @@
 pipeline:
   composer:
     image: composer
+    pull: true
     commands:
       - composer install
 
   code-style:
-    image: php:7.1-cli-alpine
+    image: owncloudci/php:7.1
+    pull: true
     commands:
       - php vendor/bin/php-cs-fixer fix --dry-run --diff
       - php vendor/bin/phpstan analyse -c phpstan.neon -l 4 bin config src
       - php ./vendor/bin/psalm
+      - php vendor/bin/phan
 
   build-phar:
     image: patrickjahns/box
+    pull: true
     commands:
       - box compile --config box.json
     when:
@@ -20,6 +24,7 @@ pipeline:
 
   build-signed-phar:
     image: patrickjahns/box
+    pull: true
     secrets: [signing_key]
     commands:
       - mkdir .keys
@@ -30,17 +35,20 @@ pipeline:
 
   verify-build:
     image: patrickjahns/box
+    pull: true
     commands:
       - box verify ./build/cliph.phar
 
   acceptance-test:
     image: php:7.1-cli-alpine
+    pull: true
     commands:
       - cd build
       - ./cliph.phar hello
 
   github_release:
     image: plugins/github-release
+    pull: true
     secrets: [ github_token ]
     files: build/*
     checksum: sha256
