@@ -2,16 +2,10 @@
 <?php
 
 use Cliph\Console\Application;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-$builder = new ContainerBuilder();
-$loader = new YamlFileLoader($builder, new FileLocator(__DIR__.'/../config'));
-$loader->load('services.yml');
-$builder->compile();
-
-$app = $builder->get(Application::class);
+$kernel = new \Cliph\Kernel();
+$kernel->boot();
+$app = $kernel->getContainer()->get(Application::class);
 $app->run();

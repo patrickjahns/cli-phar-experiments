@@ -22,41 +22,46 @@
  *
  */
 
-namespace Cliph\Console;
+namespace Cliph;
 
-use Symfony\Component\Console\Application as BaseApplication;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\TaggedContainerInterface;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class Application extends BaseApplication
+/**
+ * Cliph Kernel is a simplified Entrypoint for the application
+ * @package Cliph
+ */
+class Kernel
 {
-	const VERSION = '0.0.2-dev';
-
-	/** @var TaggedContainerInterface  */
+	/** @var ContainerBuilder */
 	private $container;
 
 	/**
-	 * Application constructor.
-	 * @param ContainerInterface $container
+	 * @return ContainerBuilder
+	 * @throws \RuntimeException
 	 */
-	public function __construct(ContainerInterface $container)
+	public function getContainer(): ContainerBuilder
 	{
-		parent::__construct('CLIPH', self::VERSION);
-		$this->container = $container;
+		if ($this->container === null) {
+			throw new \RuntimeException("kernel not initialized");
+		}
+		return $this->container;
 	}
 
 	/**
-	 * @return array|\Symfony\Component\Console\Command\Command[]
 	 * @throws \Exception
 	 */
-	protected function getDefaultCommands()
+	public function boot(): void
 	{
-		$commands = parent::getDefaultCommands();
-
-		foreach ($this->container->findTaggedServiceIds('console.command') as $commandId => $command) {
-			$commands[] = $this->container->get($commandId);
+		if ($this->container !== null) {
+			return;
 		}
-
-		return $commands;
+		$builder = new ContainerBuilder();
+		$loader = new YamlFileLoader($builder, new FileLocator(__DIR__.'/../config'));
+		$loader->load('services.yml');
+		$builder->compile();
+		$this->container = $builder;
 	}
+
 }
