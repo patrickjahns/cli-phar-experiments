@@ -24,16 +24,38 @@
 
 namespace Cliph\Console;
 
-use Cliph\Console\Command\HelloWorldCommand;
 use Symfony\Component\Console\Application as BaseApplication;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Application extends BaseApplication
 {
 	const VERSION = '0.0.2-dev';
 
-	public function __construct()
+	/** @var ContainerInterface  */
+	private $container;
+
+
+	/**
+	 * Application constructor.
+	 * @param ContainerInterface $container
+	 */
+	public function __construct(ContainerInterface $container)
 	{
 		parent::__construct('CLIPH', self::VERSION);
-		$this->add(new HelloWorldCommand());
+		$this->container = $container;
+	}
+
+	/**
+	 * @return array|\Symfony\Component\Console\Command\Command[]
+	 */
+	protected function getDefaultCommands()
+	{
+		$commands = parent::getDefaultCommands();
+
+		foreach ($this->container->findTaggedServiceIds('console.command') as $commandId => $command) {
+			$commands[] = $this->container->get($commandId);
+		}
+
+		return $commands;
 	}
 }
