@@ -6,7 +6,5 @@ services:
   Cliph\Console\Application:
     public: true
 
-  console_commands:
-    namespace: Cliph\Console\Command\
-    resource: '../src/Console/Command/*'
+  Cliph\Console\Command\HelloWorldCommand:
     tags: ['console.command']
