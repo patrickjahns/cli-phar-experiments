@@ -1,9 +1,8 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * @author Patrick Jahns <github@patrickjahns.de>
+ *
  * @copyright Copyright (c) 2018, Patrick Jahns.
  * @license GPL-2.0
  *
@@ -20,6 +19,7 @@ declare(strict_types=1);
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
  */
 
 namespace Cliph\Console;
@@ -30,35 +30,33 @@ use Symfony\Component\DependencyInjection\TaggedContainerInterface;
 
 class Application extends BaseApplication
 {
-    const VERSION = '0.0.5';
+	const VERSION = '0.0.5';
 
-    /** @var TaggedContainerInterface */
-    private $container;
+	/** @var TaggedContainerInterface  */
+	private $container;
 
-    /**
-     * Application constructor.
-     *
-     * @param ContainerInterface $container
-     */
-    public function __construct(ContainerInterface $container)
-    {
-        parent::__construct('CLIPH', self::VERSION);
-        $this->container = $container;
-    }
+	/**
+	 * Application constructor.
+	 * @param ContainerInterface $container
+	 */
+	public function __construct(ContainerInterface $container)
+	{
+		parent::__construct('CLIPH', self::VERSION);
+		$this->container = $container;
+	}
 
-    /**
-     * @throws \Exception
-     *
-     * @return array|\Symfony\Component\Console\Command\Command[]
-     */
-    protected function getDefaultCommands()
-    {
-        $commands = parent::getDefaultCommands();
+	/**
+	 * @return array|\Symfony\Component\Console\Command\Command[]
+	 * @throws \Exception
+	 */
+	protected function getDefaultCommands()
+	{
+		$commands = parent::getDefaultCommands();
 
-        foreach ($this->container->findTaggedServiceIds('console.command') as $commandId => $command) {
-            $commands[] = $this->container->get($commandId);
-        }
+		foreach ($this->container->findTaggedServiceIds('console.command') as $commandId => $command) {
+			$commands[] = $this->container->get($commandId);
+		}
 
-        return $commands;
-    }
+		return $commands;
+	}
 }
