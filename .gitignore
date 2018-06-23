@@ -1,4 +1,7 @@
 /vendor
+/vendor-bin/*/composer.lock
+/vendor-bin/*/vendor/
 box.phar
 /build
 .keys
+.php_cs.cache

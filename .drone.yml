@@ -4,6 +4,11 @@ pipeline:
     commands:
       - composer install
 
+  code-style:
+    image: php:7.1-cli-alpine
+    commands:
+      - php vendor/bin/php-cs-fixer fix --dry-run --diff
+
   build-phar:
     image: patrickjahns/box
     commands:
