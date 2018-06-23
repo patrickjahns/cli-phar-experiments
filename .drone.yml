@@ -1,6 +1,6 @@
 pipeline:
   composer:
-    image: composer
+    image: owncloudci/php:7.1
     pull: true
     commands:
       - composer install
@@ -10,6 +10,21 @@ pipeline:
     pull: true
     commands:
       - php vendor/bin/php-cs-fixer fix --dry-run --diff
+
+  static-code-analyzer-71:
+    image: owncloudci/php:7.1
+    pull: true
+    group: static-code-analyzer
+    commands:
+      - php vendor/bin/phpstan analyse -c phpstan.neon -l 4 bin config src
+      - php ./vendor/bin/psalm
+      - php vendor/bin/phan
+
+  static-code-analyzer-72:
+    image: owncloudci/php:7.2
+    pull: true
+    group: static-code-analyzer
+    commands:
       - php vendor/bin/phpstan analyse -c phpstan.neon -l 4 bin config src
       - php ./vendor/bin/psalm
       - php vendor/bin/phan
