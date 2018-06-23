@@ -30,7 +30,7 @@ use Symfony\Component\DependencyInjection\TaggedContainerInterface;
 
 class Application extends BaseApplication
 {
-	const VERSION = '0.0.2-dev';
+	const VERSION = '0.0.3';
 
 	/** @var TaggedContainerInterface  */
 	private $container;
