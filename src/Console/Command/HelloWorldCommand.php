@@ -16,8 +16,10 @@ class HelloWorldCommand extends Command
             ->setDescription('say hello world');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         $output->writeln('<fg=cyan;options=bold>Hello World</>');
+
+        return 0;
     }
 }
