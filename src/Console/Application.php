@@ -25,7 +25,7 @@ declare(strict_types=1);
 namespace Cliph\Console;
 
 use Symfony\Component\Console\Application as BaseApplication;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\DependencyInjection\TaggedContainerInterface;
 
 class Application extends BaseApplication
@@ -38,9 +38,9 @@ class Application extends BaseApplication
     /**
      * Application constructor.
      *
-     * @param ContainerInterface $container
+     * @param TaggedContainerInterface $container
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(TaggedContainerInterface $container)
     {
         parent::__construct('CLIPH', self::VERSION);
         $this->container = $container;
@@ -49,14 +49,16 @@ class Application extends BaseApplication
     /**
      * @throws \Exception
      *
-     * @return array|\Symfony\Component\Console\Command\Command[]
+     * @return Command[]
      */
     protected function getDefaultCommands()
     {
         $commands = parent::getDefaultCommands();
 
         foreach ($this->container->findTaggedServiceIds('console.command') as $commandId => $command) {
-            $commands[] = $this->container->get($commandId);
+            /** @var Command $command */
+            $command = $this->container->get($commandId);
+            $commands[] = $command;
         }
 
         return $commands;

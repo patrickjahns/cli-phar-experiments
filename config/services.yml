@@ -5,6 +5,8 @@ services:
 
   Cliph\Console\Application:
     public: true
+    arguments: ['@Symfony\Component\DependencyInjection\ContainerInterface']
+
 
   console_commands:
     namespace: Cliph\Console\Command\
