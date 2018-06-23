@@ -16,7 +16,7 @@ pipeline:
     secrets: [signing_key]
     commands:
       - mkdir .keys
-      - echo $${SIGNING_KEY} > ./keys/phar-private.pem
+      - echo "$${SIGNING_KEY}" > .keys/phar-private.pem
       - box compile --config box.json.dist
     when:
       event: tag
