@@ -7,4 +7,5 @@ services:
     public: true
 
   Cliph\Console\Command\HelloWorldCommand:
+    public: true
     tags: ['console.command']
