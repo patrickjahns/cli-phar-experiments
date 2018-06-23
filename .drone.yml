@@ -8,7 +8,7 @@ pipeline:
     image: php:7.1-cli-alpine
     commands:
       - php vendor/bin/php-cs-fixer fix --dry-run --diff
-      - php vendor/bin/phpstan analyse -c phpstan.neon -l 2 bin config src
+      - php vendor/bin/phpstan analyse -c phpstan.neon -l 4 bin config src
       - php ./vendor/bin/psalm
 
   build-phar:
