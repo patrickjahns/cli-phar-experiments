@@ -17,8 +17,9 @@
     "php": ">=7.1",
     "symfony/console": "4.1",
     "symfony/dependency-injection": "4.1",
-    "symfony/config": "4.1",
-    "symfony/yaml": "4.1"
+    "symfony/config": "4.1.x-dev",
+    "symfony/yaml": "4.1",
+    "symfony/finder": "^4.1"
   },
   "config": {
     "optimize-autoloader": true,
