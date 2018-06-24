@@ -29,6 +29,18 @@ pipeline:
       - php ./vendor/bin/psalm
       - php vendor/bin/phan
 
+  phpunit:
+    image: owncloudci/php:7.1
+    pull: true
+    commands:
+      - php vendor/bin/phpunit
+
+  composer-prepare-build:
+    image: owncloudci/php:7.1
+    pull: true
+    commands:
+      - composer install --no-dev --no-plugins --no-scripts --optimize-autoloader --classmap-authoritative
+
   build-phar:
     image: patrickjahns/box
     pull: true
