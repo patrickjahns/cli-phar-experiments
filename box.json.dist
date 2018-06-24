@@ -4,13 +4,7 @@
   "output": "build/cliph.phar",
   "algorithm": "OPENSSL",
   "key": ".keys/phar-private.pem",
-    "directories": [
-      "bin",
-      "config",
-      "src",
-      "vendor"
-    ],
-    "files": [
-      "composer.json"
-    ]
+  "files": [
+    "config/services.yml"
+  ]
 }

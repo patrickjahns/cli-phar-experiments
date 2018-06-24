@@ -2,13 +2,7 @@
   "chmod": "0755",
   "main":"bin/cliph",
   "output": "build/cliph.phar",
-  "directories": [
-    "bin",
-    "config",
-    "src",
-    "vendor"
-  ],
   "files": [
-    "composer.json"
+    "config/services.yml"
   ]
 }
