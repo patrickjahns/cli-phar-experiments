@@ -68,12 +68,6 @@ pipeline:
     commands:
       - php vendor/bin/phpunit
 
-  composer-prepare-build:
-    image: owncloudci/php:7.1
-    pull: true
-    commands:
-      - composer install --no-dev --no-plugins --no-scripts --optimize-autoloader --classmap-authoritative
-
   build-phar:
     image: patrickjahns/box
     pull: true
@@ -103,8 +97,7 @@ pipeline:
     image: php:7.1-cli-alpine
     pull: true
     commands:
-      - cd build
-      - ./cliph.phar hello
+      - php vendor/bin/behat
 
   github_release:
     image: plugins/github-release
