@@ -13,6 +13,13 @@
       "Cliph\\":"src"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Cliph\\": [
+        "tests"
+      ]
+    }
+  },
   "require": {
     "php": ">=7.1",
     "symfony/console": "4.1",
@@ -28,7 +35,8 @@
     }
   },
   "require-dev": {
-    "bamarni/composer-bin-plugin": "^1.2"
+    "bamarni/composer-bin-plugin": "^1.2",
+    "phpunit/phpunit": "^7.2"
   },
   "scripts": {
     "post-install-cmd": ["@composer bin all install --ansi"]
