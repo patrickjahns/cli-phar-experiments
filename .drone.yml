@@ -6,7 +6,7 @@ pipeline:
     restore: true
     when:
       local: false
-      event: [push, pull_request]
+      event: [tag, push, pull_request]
 
   composer:
     image: owncloudci/php:7.1
