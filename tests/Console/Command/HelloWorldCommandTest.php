@@ -22,26 +22,28 @@ declare(strict_types=1);
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-namespace Cliph\Tests;
+namespace Cliph\Tests\Console\Command;
 
-use Cliph\Kernel;
-use PHPUnit\Framework\TestCase;
+use Cliph\Console\Application;
+use Cliph\Tests\KernelTestCase;
+use Symfony\Component\Console\Tester\CommandTester;
 
-abstract class KernelTestCase extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class HelloWorldCommandTest extends KernelTestCase
 {
-    /**
-     * @return Kernel
-     */
-    protected static function createKernel()
+    public function testExecute(): void
     {
-        return new Kernel();
-    }
-
-    protected static function bootKernel()
-    {
-        $kernel = self::createKernel();
-        $kernel->boot();
-
-        return $kernel;
+        $kernel = self::bootKernel();
+        $application = $kernel->getContainer()->get(Application::class);
+        $command = $application->find('hello');
+        $commandTester = new CommandTester($command);
+        $commandTester->execute([
+            'command' => $command->getName(),
+        ]);
+        $output = $commandTester->getDisplay();
+        $this->assertContains('Hello World', $output);
     }
 }
