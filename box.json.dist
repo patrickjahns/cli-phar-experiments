@@ -6,5 +6,9 @@
   "key": ".keys/phar-private.pem",
   "files": [
     "config/services.yml"
+  ],
+  "compactors": [
+    "Herrera\\Box\\Compactor\\Php",
+    "Herrera\\Box\\Compactor\\Json"
   ]
 }

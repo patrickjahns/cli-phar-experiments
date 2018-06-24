@@ -4,5 +4,9 @@
   "output": "build/cliph.phar",
   "files": [
     "config/services.yml"
+  ],
+  "compactors": [
+    "Herrera\\Box\\Compactor\\Php",
+    "Herrera\\Box\\Compactor\\Json"
   ]
 }
