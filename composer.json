@@ -39,6 +39,11 @@
     "phpunit/phpunit": "^7.2"
   },
   "scripts": {
-    "post-install-cmd": ["@composer bin all install --ansi"]
+    "post-install-cmd": [
+      "@composer bin phan install --ansi",
+      "@composer bin php-cs-fixer install --ansi",
+      "@composer bin phpstan install --ansi",
+      "@composer bin psalm install --ansi"
+    ]
   }
 }
