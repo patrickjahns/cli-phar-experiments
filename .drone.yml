@@ -21,7 +21,10 @@ pipeline:
     rebuild: true
     mount:
       - vendor
-      - vendor-bin
+      - vendor-bin/phan/vendor
+      - vendor-bin/php-cs-fixer/vendor
+      - vendor-bin/phpstan/vendor
+      - vendor-bin/psalm/vendor
     when:
       local: false
       event: [push]
