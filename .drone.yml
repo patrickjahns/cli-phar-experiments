@@ -11,8 +11,11 @@ pipeline:
   composer:
     image: owncloudci/php:7.1
     pull: true
+    environment:
+      - COMPOSER_HOME=${DRONE_WORKSPACE}/.composer
     commands:
-      - composer install
+      - printenv
+      - exit 1
 
   cache-rebuild:
     image: plugins/s3-cache:1
@@ -20,11 +23,7 @@ pipeline:
     secrets: [ cache_s3_endpoint, cache_s3_access_key, cache_s3_secret_key ]
     rebuild: true
     mount:
-      - vendor
-      - vendor-bin/phan/vendor
-      - vendor-bin/php-cs-fixer/vendor
-      - vendor-bin/phpstan/vendor
-      - vendor-bin/psalm/vendor
+      - .composer
     when:
       local: false
       event: [push]
