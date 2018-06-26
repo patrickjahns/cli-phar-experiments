@@ -4,3 +4,4 @@ box.phar
 /build
 .keys
 .php_cs.cache
+.composer
