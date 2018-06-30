@@ -62,4 +62,17 @@ class Application extends BaseApplication
 
         return $commands;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultInputDefinition()
+    {
+        $inputDefinition = parent::getDefaultInputDefinition();
+        $inputDefinition->addOption(
+            new InputOption('config', null, InputOption::VALUE_REQUIRED, 'Alternative configuration file path.')
+        );
+
+        return $inputDefinition;
+    }
 }
