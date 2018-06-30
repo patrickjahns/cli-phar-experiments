@@ -26,7 +26,9 @@
     "symfony/dependency-injection": "4.1",
     "symfony/config": "4.1.x-dev",
     "symfony/yaml": "4.1",
-    "symfony/finder": "^4.1"
+    "symfony/finder": "^4.1",
+    "symfony/filesystem": "^4.1",
+    "phpseclib/phpseclib": "^2.0"
   },
   "config": {
     "optimize-autoloader": true,
