@@ -10,5 +10,6 @@
   "compactors": [
     "Herrera\\Box\\Compactor\\Php",
     "Herrera\\Box\\Compactor\\Json"
-  ]
+  ],
+  "git-tag": "git-tag"
 }

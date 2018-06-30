@@ -33,6 +33,8 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  */
 class Kernel
 {
+    const VERSION = '@git-tag@';
+
     /** @var ContainerBuilder */
     private $container;
 
