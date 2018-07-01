@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0199287519ef8a14ed14465be5fb3c0c",
+    "content-hash": "aea05136cdee361d03c7fe3b1ee18f2d",
     "packages": [
         {
             "name": "pear/archive_tar",
@@ -361,7 +361,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "4.1.x-dev",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -2839,9 +2839,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "symfony/config": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

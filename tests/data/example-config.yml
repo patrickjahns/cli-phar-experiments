@@ -1,0 +1,16 @@
+config:
+  flatten_symlinks: true
+
+
+
+build_tasks:
+  - composer install --no-dev -o
+  - npm run
+
+package:
+  include:
+    - appinfo
+    - core
+    - symlink
+  exclude:
+    - test
