@@ -1,7 +1,7 @@
 {
   "chmod": "0755",
-  "main":"bin/cliph",
-  "output": "build/cliph.phar",
+  "main":"bin/oct",
+  "output": "build/oct.phar",
   "algorithm": "OPENSSL",
   "key": ".keys/phar-private.pem",
   "files": [

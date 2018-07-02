@@ -22,7 +22,7 @@ declare(strict_types=1);
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-namespace Cliph\Tests;
+namespace OC\Tekton\Tests;
 
 use Cliph\Kernel;
 use PHPUnit\Framework\TestCase;

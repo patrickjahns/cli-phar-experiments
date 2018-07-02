@@ -10,12 +10,12 @@
   ],
   "autoload":{
     "psr-4":{
-      "Cliph\\":"src"
+      "OC\\Tekton\\":"src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Cliph\\Tests\\": [
+      "OC\\Tekton\\Tests\\": [
         "tests"
       ]
     }

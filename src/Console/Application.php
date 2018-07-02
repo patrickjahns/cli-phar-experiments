@@ -22,7 +22,7 @@ declare(strict_types=1);
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-namespace Cliph\Console;
+namespace OC\Tekton\Console;
 
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Command\Command;

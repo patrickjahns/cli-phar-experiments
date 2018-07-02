@@ -1,11 +1,11 @@
 #!/usr/bin/env php
 <?php
 
-use Cliph\Console\Application;
+use OC\Tekton\Console\Application;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-$kernel = new \Cliph\Kernel();
+$kernel = new \OC\Tekton\Kernel();
 $kernel->boot();
 $app = $kernel->getContainer()->get(Application::class);
 $app->run();

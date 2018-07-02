@@ -22,14 +22,14 @@ declare(strict_types=1);
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-namespace Cliph;
+namespace OC\Tekton;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
- * Cliph Kernel is a simplified Entrypoint for the application.
+ * Kernel is a simplified Entrypoint for the application.
  */
 class Kernel
 {
