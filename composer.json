@@ -29,7 +29,8 @@
     "symfony/finder": "^4.1",
     "symfony/filesystem": "^4.1",
     "phpseclib/phpseclib": "^2.0",
-    "pear/archive_tar": "^1.4"
+    "pear/archive_tar": "^1.4",
+    "symfony/process": "^4.1"
   },
   "config": {
     "optimize-autoloader": true,
@@ -40,8 +41,7 @@
   "require-dev": {
     "bamarni/composer-bin-plugin": "^1.2",
     "phpunit/phpunit": "^7.2",
-    "behat/behat": "^3.4",
-    "symfony/process": "^4.1"
+    "behat/behat": "^3.4"
   },
   "scripts": {
     "post-install-cmd": [
