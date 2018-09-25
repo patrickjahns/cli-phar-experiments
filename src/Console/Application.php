@@ -27,6 +27,7 @@ namespace Cliph\Console;
 use Cliph\Kernel;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\DependencyInjection\TaggedContainerInterface;
 
 class Application extends BaseApplication
