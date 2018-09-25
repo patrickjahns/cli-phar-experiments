@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * @author Patrick Jahns <github@patrickjahns.de>
- *
  * @copyright Copyright (c) 2018, Patrick Jahns.
  * @license GPL-2.0
  *
@@ -19,7 +20,6 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- *
  */
 
 namespace Cliph\Tests;
@@ -27,14 +27,17 @@ namespace Cliph\Tests;
 use Cliph\Kernel;
 use PHPUnit\Framework\TestCase;
 
-class KernelTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class KernelTest extends TestCase
 {
-	public function test_it_will_throw_an_error()
-	{
-		$this->expectException(\RuntimeException::class);
+    public function test_it_will_throw_an_error(): void
+    {
+        $this->expectException(\RuntimeException::class);
 
-		$kernel = new Kernel();
-		$kernel->getContainer();
-	}
-
+        $kernel = new Kernel();
+        $kernel->getContainer();
+    }
 }
