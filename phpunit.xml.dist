@@ -33,4 +33,8 @@
     <php>
         <ini name="zend.enable_gc" value="0"/>
     </php>
+    <logging>
+        <log type="junit" target="./output/junit.xml"/>
+        <log type="coverage-clover" target="./output/clover.xml"/>
+    </logging>
 </phpunit>

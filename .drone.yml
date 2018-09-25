@@ -71,7 +71,19 @@ pipeline:
     image: owncloudci/php:7.1
     pull: true
     commands:
-      - php vendor/bin/phpunit
+      - phpdbg -qrr -d memory_limit=4096M -d zend.enable_gc=0 vendor/bin/phpunit
+
+  code-analysis:
+    image: openjdk:8-jre-alpine
+    secrets: [sonar_host, sonar_token]
+    commands:
+     - apk update && apk add zip
+     - cd /drone
+     - wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227.zip
+     - unzip sonar-scanner-cli-3.2.0.1227.zip
+     - cd /drone/src
+     - /drone/sonar-scanner-3.2.0.1227/bin/sonar-scanner -Dsonar.host.url=$${SONAR_HOST} -Dsonar.login=$${SONAR_TOKEN}
+
 
   build-phar:
     image: patrickjahns/box

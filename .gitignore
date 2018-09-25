@@ -5,3 +5,5 @@ box.phar
 .keys
 .php_cs.cache
 .composer
+.scannerwork
+/output
