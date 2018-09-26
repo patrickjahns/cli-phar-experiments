@@ -43,11 +43,11 @@ pipeline:
       event: [push]
       branch: master
 
-  code-style:
-    image: owncloudci/php:7.1
-    pull: true
-    commands:
-      - php vendor/bin/php-cs-fixer fix --dry-run --diff
+#  code-style:
+#    image: owncloudci/php:7.1
+#    pull: true
+#    commands:
+#      - php vendor/bin/php-cs-fixer fix --dry-run --diff
 
   static-code-analyzer-71:
     image: owncloudci/php:7.1
@@ -81,37 +81,17 @@ pipeline:
     when:
       event: [push, pull_request]
 
-  build-signed-phar:
-    image: patrickjahns/box
-    pull: true
-    secrets: [signing_key]
-    commands:
-      - mkdir .keys
-      - echo "$${SIGNING_KEY}" > .keys/phar-private.pem
-      - box compile --config box.json.dist
-    when:
-      event: tag
-
   verify-build:
     image: patrickjahns/box
     pull: true
     commands:
-      - box verify ./build/cliph.phar
+      - box verify ./build/oct.phar
 
   acceptance-test:
     image: php:7.1-cli-alpine
     pull: true
     commands:
       - php vendor/bin/behat
-
-  github_release:
-    image: plugins/github-release
-    pull: true
-    secrets: [ github_token ]
-    files: build/*
-    checksum: sha256
-    when:
-      event: tag
 
 
 

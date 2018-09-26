@@ -18,7 +18,7 @@ class FeatureContext implements Context
 
     protected $phpBin;
 
-    protected $phar = 'build/cliph.phar';
+    protected $phar = 'build/oct.phar';
 
     public function __construct()
     {

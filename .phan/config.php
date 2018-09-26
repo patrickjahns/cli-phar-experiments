@@ -286,12 +286,7 @@ return [
     // your application should be included in this list.
     'directory_list' => [
         'src',
-        'vendor/bamarni/composer-bin-plugin/src',
-        'vendor/symfony/config',
-        'vendor/symfony/console',
-        'vendor/symfony/dependency-injection',
-        'vendor/symfony/finder',
-        'vendor/symfony/yaml',
+        'vendor/'
     ],
 
     // A list of individual files to include in analysis

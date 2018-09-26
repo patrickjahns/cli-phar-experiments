@@ -33,6 +33,8 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  */
 class Kernel
 {
+	const VERSION = '0.0.1-dev';
+
     /** @var ContainerBuilder */
     private $container;
 

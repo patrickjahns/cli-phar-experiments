@@ -24,13 +24,13 @@ declare(strict_types=1);
 
 namespace OC\Tekton\Console;
 
+use OC\Tekton\Kernel;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\DependencyInjection\TaggedContainerInterface;
 
 class Application extends BaseApplication
 {
-    const VERSION = '0.0.7';
 
     /** @var TaggedContainerInterface */
     private $container;
@@ -42,7 +42,7 @@ class Application extends BaseApplication
      */
     public function __construct(TaggedContainerInterface $container)
     {
-        parent::__construct('CLIPH', self::VERSION);
+        parent::__construct('CLIPH', Kernel::VERSION);
         $this->container = $container;
     }
 

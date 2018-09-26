@@ -35,6 +35,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
@@ -95,13 +96,29 @@ class BuildCommand extends Command
             ->addArgument('certificate', InputArgument::REQUIRED, 'Path to certificate to use for signing.');
     }
 
-    private function mirror($appPath, $tmpPath, $configuration): void
+    private function mirror($appPath, $tmpPath, array $configuration): void
     {
+
         $finder = new Finder();
         $finder->in($appPath)->ignoreVCS(true);
         foreach ($configuration['exclude'] as $exclude) {
             $finder->exclude($exclude);
         }
+
+        if (!empty($configuration['exclude'])) {
+
+
+			$excluded = $configuration['exclude'];
+			$filter = function (SplFileInfo  $file) use ($excluded) {
+				foreach ($excluded as $excludedItem) {
+					if (strpos($excludedItem, $file->getRelativePathname()) === 0) {
+						return false;
+					}
+				}
+				return true;
+			};
+			$finder->filter($filter);
+		}
         $options = [];
         if (true === $configuration['flatten']) {
             $options['copy_on_windows'] = true;
@@ -194,7 +211,7 @@ class BuildCommand extends Command
             $cmd->setTimeout(600);
             $cmd->run(function ($type, $buffer) use ($io): void {
                 if (Process::ERR === $type) {
-                    $io->warning('ERR > '.$buffer);
+                    $io->writeln('<fg=red> ERR > '.$buffer.'</>');
                 } else {
                     $io->writeln('OUT > '.$buffer);
                 }

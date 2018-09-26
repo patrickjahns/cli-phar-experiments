@@ -3,13 +3,13 @@ services:
    autowire: true
    autoconfigure: true
 
-  Cliph\Console\Application:
+  OC\Tekton\Console\Application:
     public: true
     arguments: ['@Symfony\Component\DependencyInjection\ContainerInterface']
 
 
   console_commands:
-    namespace: Cliph\Console\Command\
+    namespace: OC\Tekton\Console\Command\
     resource: '../src/Console/Command/*'
     tags: ['console.command']
     public: true
